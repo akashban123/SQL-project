@@ -1,1 +1,1 @@
-# SQL-project
+Digital Music Store analysis Project
