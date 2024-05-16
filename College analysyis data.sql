@@ -20,11 +20,10 @@ VALUES
 (106, "farah", 82,"B","Delhi");
 
 SELECT * FROM student1;
-DROP TABLE student1;
-DELETE FROM school WHERE rollno = 117;
+
 
 Q.1 Delete student whose id is 105?
-DELETE FROM school WHERE rollno = 105;
+DELETE FROM student1 WHERE rollno = 105;
 
 Q.2 write the query to find avg marks in each city in ascending order.
 
@@ -35,35 +34,35 @@ ORDER BY avg(marks) ASC;
 
 Q.3 Change the name of column name to full_name.
 
-ALTER TABLE student
+ALTER TABLE student1
 CHANGE name full_name VARCHAR (50);
 
 Q.4 Delete all the students who scored marks less than 80
  
-DELETE FROM student
+DELETE FROM student1
 WHERE marks < 80;
 
 Q.5. Delete the column for grades. 
 
-ALTER TABLE student
+ALTER TABLE student1
 DROP COLUMN grade;
 
 Q.6 Update the grade into A whose marks is greater than 70 to 85.
 
-UPDATE student
+UPDATE student1
 SET grade = "A"
 WHERE marks BETWEEN 70 to 85;
 
 Q.7 write the query of top 3 student with marks?
 
-SELECt * FROM student 
+SELECt * FROM student1 
 ORDER BY marks DESC
 LIMIT 3;
 
 Q.8 write the query to find city and count of roll nor whose marks is grater then 90?
 
 SELECT city, count(roll no)
-FROM student 
+FROM student1 
 GROUP BY city 
 HAVING MAX(marks) > 90;
 
