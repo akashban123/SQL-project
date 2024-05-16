@@ -1,76 +1,82 @@
-CREATE DATABASE college;
-USE college;
+CREATE DATABASE school2;
+USE school2;
 
-CREATE TABLE student (
-id INT PRIMARY KEY,
-name VARCHAR(50)
+CREATE TABLE student1 (
+rollno INT PRIMARY KEY,
+name VARCHAR(50),
+marks INT NOT NULL,
+grade VARCHAR(1),
+city VARCHAR(20)
 );
 
-INSERT INTO student 
-(id, name)
-VALUES 
-(101, "adam"),
-(102, "bob"),
-(103, "casey");
+INSERT INTO student1
+(rollno, name, marks, grade, city)
+VALUES
+(101, "anil", 78, "C", "Pune"), 
+(102, "bhumika", 93, "A", "Mumbai"), 
+(103, "chetan", 85, "B", "Mumbai"), 
+(104, "dhruv", 96, "A", "Delhi"), 
+(105, "emanuel", 12, "F", "Delhi"), 
+(106, "farah", 82,"B","Delhi");
 
+SELECT * FROM student1;
+DROP TABLE student1;
+DELETE FROM school WHERE rollno = 117;
 
-DELETE FROM student where id = "105";
+Q.1 Delete student whose id is 105?
+DELETE FROM school WHERE rollno = 105;
 
-DROP TABLE student;
-truncate student;
+Q.2 write the query to find avg marks in each city in ascending order.
 
-SELECT * FROM student;
+SELECT city, avg(marks)
+FROM student1
+GROUP BY city
+ORDER BY avg(marks) ASC;
+
+Q.3 Change the name of column name to full_name.
 
 ALTER TABLE student
-DROP COLUMN stu_age;
+CHANGE name full_name VARCHAR (50);
 
-ALTER TABLE school
-RENAME To student;
+Q.4 Delete all the students who scored marks less than 80
+ 
+DELETE FROM student
+WHERE marks < 80;
+
+Q.5. Delete the column for grades. 
 
 ALTER TABLE student
-ADD COLUMN stu_age INT DEFAULT 37;
+DROP COLUMN grade;
 
-ALTER TABLE student
-MODIFY COLUMN age VARCHAR(2);
+Q.6 Update the grade into A whose marks is greater than 70 to 85.
 
-INSERT INTO student 
-(id, name, stu_age)
-VALUES 
-(105, "adam", 125);
+UPDATE student
+SET grade = "A"
+WHERE marks BETWEEN 70 to 85;
 
-CREATE TABLE course (
-id INT PRIMARY KEY,
-name VARCHAR(50)
-);
+Q.7 write the query of top 3 student with marks?
 
-INSERT INTO course 
-(id, name)
-VALUES 
-(102, "english"),
-(105, "math"),
-(103, "science"),
-(107, "computer science");
+SELECt * FROM student 
+ORDER BY marks DESC
+LIMIT 3;
 
-DROP TABLE course;
-TRUNCATE course;
-SELECT * FROM course;
+Q.8 write the query to find city and count of roll nor whose marks is grater then 90?
 
-SELECT name from student
-UNION ALL
-SELECT name from course;
-
-SELECT *
-FROM student as s
-JOIN course as c
-ON s.id = c.id;
+SELECT city, count(roll no)
+FROM student 
+GROUP BY city 
+HAVING MAX(marks) > 90;
 
 
-SELECT *
-FROM student as s
-RIGHT JOIN course as c
-ON s.id = c.id;
 
-SELECT *
-FROM student as s
-LEFT JOIN course as c
-ON s.id = c.id;
+
+
+
+
+
+
+
+
+
+
+
